@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transit Slip - TN34589856</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+        }
+        
+        .header {
+            margin-bottom: 0;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .serial-qr {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .serial-number {
+            font-family: 'Arial Black', Arial, sans-serif;
+            font-size: 26px;
+            font-weight: 900;
+        }
+        
+        .qr-placeholder {
+            width: 65px;
+            height: 65px;
+            border: 2px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            background: #f0f0f0;
+        }
+        
+        .header-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #000;
+            padding: 6px 5px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 12px;
+            margin-bottom: 0;
+        }
+        
+        .header-bottom input {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            border: none;
+            background: transparent;
+            font-size: 12px;
+            padding: 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        td {
+            border: 1px solid #000;
+            padding: 4px 6px;
+            font-size: 11px;
+            vertical-align: middle;
+        }
+        
+        .label-cell {
+            font-weight: bold;
+            background: #f5f5f5;
+        }
+        
+        input[type="text"], textarea {
+            width: 100%;
+            border: none;
+            padding: 2px;
+            font-size: 11px;
+            font-family: Arial, sans-serif;
+            background: transparent;
+        }
+        
+        input[type="text"]:focus, textarea:focus {
+            outline: 1px solid #4CAF50;
+            background: #ffffcc;
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 50px;
+        }
+        
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 13px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .generate-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .generate-btn:hover {
+            background: #45a049;
+        }
+        
+        .reset-btn {
+            background: #f44336;
+            color: white;
+        }
+        
+        .reset-btn:hover {
+            background: #da190b;
+        }
+        
+        .add-row-btn {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .add-row-btn:hover {
+            background: #0b7dda;
+        }
+        
+        .delete-row-btn {
+            background: #ff9800;
+            color: white;
+            padding: 2px 8px;
+            font-size: 10px;
+            margin-left: 5px;
+        }
+        
+        .delete-row-btn:hover {
+            background: #e68900;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .buttons {
+                display: none;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .delete-row-btn {
+                display: none;
+            }
+            
+            input, textarea {
+                background: transparent !important;
+                outline: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-top">
+                <div class="serial-qr">
+                    <span class="serial-number" id="serialDisplay">TN34589856</span>
+                    <div class="qr-placeholder">QR Code</div>
+                </div>
+            </div>
+            
+            <div class="header-bottom">
+                <div>
+                    <strong>HSN Code :</strong> <input type="text" id="hsnCode" value="N/A" style="width: 60px;">
+                </div>
+                <div>
+                    <strong>Date & Time of Dispatch:</strong> <input type="text" id="dispatchDateTime" value="26-08-2025 10:19:00" style="width: 150px;">
+                </div>
+            </div>
+        </div>
+
+        <table id="mainTable">
+            <tr>
+                <td class="label-cell" style="width: 20%;"><strong>Lessee Id:</strong> <input type="text" value="CHN254439"></td>
+                <td class="label-cell" style="width: 30%;"><strong>Minecode :</strong> <input type="text" value="TLRN0035"></td>
+                <td class="label-cell" style="width: 25%;"><strong>Lease Area Details</strong></td>
+                <td class="label-cell" style="width: 25%;"><strong>Serial No :</strong><input type="text" id="serialNoInput" value="TN34589856"></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell" rowspan="2"><strong>Lessee Name and Address :</strong></td>
+                <td rowspan="2"><input type="text" value="PSK Engineering Construction and co"></td>
+                <td class="label-cell"><strong>District Name :</strong></td>
+                <td><input type="text" value="Tiruvallur"></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell"><strong>Taluk Name :</strong></td>
+                <td><input type="text" value="Gummidipoondi"></td>
+            </tr>
+            
+            <tr>
+                <td colspan="2" rowspan="3">
+                    <textarea>PSK Engineering Construction
+Marina Loop Road, Reconstruction Division
+Behind santhome church
+Pattinapakkam, Chennai-600004
+Cell No.9940631001</textarea>
+                </td>
+                <td class="label-cell"><strong>Village :</strong></td>
+                <td><input type="text" value="Kannankottai"></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell"><strong>SF No / Extent :</strong></td>
+                <td><input type="text" value="142/1A (P)../002.23.00"></td>
+            </tr>
+            
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell"><strong>Mineral Name :</strong> <input type="text" value="Earth" style="width: 80px;"></td>
+                <td class="label-cell"><strong>Bulk Permit No:</strong><input type="text" value="TLR250000104"></td>
+                <td class="label-cell"><strong>Classification:</strong></td>
+                <td><input type="text" value="Porampoke land"></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell"><strong>Order Ref :</strong></td>
+                <td><input type="text" value=""></td>
+                <td class="label-cell"><strong>Lease Period :</strong></td>
+                <td><input type="text" value="14-08-2025 to 13-10-2025"></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell"><strong>Dispath Slip No :</strong></td>
+                <td><input type="text" value="DISP00002825890"></td>
+                <td class="label-cell"><strong>Within Tamil Nanu</strong></td>
+                <td><input type="text" value="Yes"></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell"><strong>Delivered To :</strong></td>
+                <td><input type="text" value="CHENNAI"></td>
+                <td colspan="2"></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell"><strong>Vehicle No :</strong></td>
+                <td><input type="text" value="TN20BA5812"></td>
+                <td class="label-cell"><strong>Destination Address :</strong></td>
+                <td rowspan="2"><input type="text" value=""></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell"><strong>Vehicle Type :</strong></td>
+                <td><input type="text" value="12WHEELS"></td>
+                <td class="label-cell"><strong>CHENNAI</strong></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell"><strong>Total Distance (in Kms):</strong></td>
+                <td><input type="text" value="50"></td>
+                <td colspan="2"></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell"><strong>Travelling Date :</strong></td>
+                <td><input type="text" value="26-08-2025 10:10 AM"></td>
+                <td colspan="2"></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell"><strong>Required Time :</strong></td>
+                <td><input type="text" value="3hrs (26-08-2025 13:10 PM)"></td>
+                <td colspan="2"></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell"><strong>Quantity (in MT) :</strong></td>
+                <td><input type="text" value="30"></td>
+                <td class="label-cell"><strong>Driver Name :</strong></td>
+                <td><input type="text" value="MANI"></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell"><strong>Driver License No :</strong></td>
+                <td><input type="text" value="TN1120200009856"></td>
+                <td class="label-cell"><strong>Via</strong></td>
+                <td><input type="text" value="MINJUR"></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell"><strong>Driver Phone No :</strong></td>
+                <td><input type="text" value="9856321212"></td>
+                <td class="label-cell"><strong>Lessee/Authorized Person Name</strong></td>
+                <td><input type="text" value="PSK Engineering Construction and co"></td>
+            </tr>
+            
+            <tr>
+                <td class="label-cell"><strong>Driver Signature :</strong></td>
+                <td><input type="text" value=""></td>
+                <td class="label-cell"><strong>Signature of AD / DD :</strong></td>
+                <td><input type="text" value="" placeholder="Signature"></td>
+            </tr>
+        </table>
+
+        <div class="buttons">
+            <button class="generate-btn" onclick="generatePDF()">📄 Generate PDF</button>
+            <button class="add-row-btn" onclick="addCustomRow()">➕ Add New Row</button>
+            <button class="reset-btn" onclick="resetForm()">🔄 Reset Form</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('serialNoInput').addEventListener('input', function() {
+            document.getElementById('serialDisplay').textContent = this.value || 'TN34589856';
+        });
+
+        function generatePDF() {
+            window.print();
+        }
+
+        function resetForm() {
+            if(confirm('Reset form to default values?')) {
+                location.reload();
+            }
+        }
+
+        function addCustomRow() {
+            const table = document.getElementById('mainTable');
+            const newRow = table.insertRow();
+            
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+            const cell4 = newRow.insertCell(3);
+            
+            cell1.className = 'label-cell';
+            cell1.innerHTML = '<strong><input type="text" placeholder="Label:" style="width: 150px;"></strong>';
+            cell2.innerHTML = '<input type="text" placeholder="Value">';
+            cell3.className = 'label-cell';
+            cell3.innerHTML = '<strong><input type="text" placeholder="Label:" style="width: 150px;"></strong><button class="delete-row-btn" onclick="deleteRow(this)">✖ Delete</button>';
+            cell4.innerHTML = '<input type="text" placeholder="Value">';
+        }
+
+        function deleteRow(btn) {
+            if(confirm('Delete this row?')) {
+                const row = btn.parentNode.parentNode;
+                row.parentNode.removeChild(row);
+            }
+        }
+    </script>
+</body>
+</html>
